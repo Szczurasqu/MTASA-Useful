@@ -1,14 +1,14 @@
 local dbConnection = dbConnect("mysql", "dbname=name;host=host", "your_username", "your_password" )
 
 function doesIDExist(idNumber)
-    local query = dbQuery(dbConnection, "SELECT idNumber FROM cash_ids WHERE idNumber = ?", idNumber)
+    local query = dbQuery(dbConnection, "SELECT idNumber FROM nazwa_tabeli WHERE idNumber = ?", idNumber)
     local result = dbPoll(query, -1)
     return result and #result > 0
 end
 
 -- Function to save an ID to the database 
 function saveIDToDatabase(uid, login, idNumber, date)
-    local query = dbExec(dbConnection, "INSERT INTO cash_ids (uid, login, idNumber, date) VALUES (?, ?, ?, ?)", uid, login, idNumber, date)
+    local query = dbExec(dbConnection, "INSERT INTO nazwa_tabeli (uid, login, idNumber, date) VALUES (?, ?, ?, ?)", uid, login, idNumber, date)
     return query
 end
 
