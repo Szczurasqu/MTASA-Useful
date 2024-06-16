@@ -1,3 +1,7 @@
+--[[
+@author: Mysteyam
+@name: ID system - Automatic generation of a sequence of numbers
+--]]
 local dbConnection = dbConnect("mysql", "dbname=name;host=host", "your_username", "your_password" )
 
 function doesIDExist(idNumber)
@@ -6,7 +10,6 @@ function doesIDExist(idNumber)
     return result and #result > 0
 end
 
--- Function to save an ID to the database 
 function saveIDToDatabase(uid, login, idNumber, date)
     local query = dbExec(dbConnection, "INSERT INTO nazwa_tabeli (uid, login, idNumber, date) VALUES (?, ?, ?, ?)", uid, login, idNumber, date)
     return query
