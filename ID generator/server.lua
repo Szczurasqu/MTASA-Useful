@@ -1,4 +1,4 @@
-local dbConnection = dbConnect("mysql", "dbname=name;host=host", "your_username", "your_password" )
+local dbConnection = dbConnect("mysql", "dbname=name;host=127.0.0.1", "your_username", "your_password")
 
 function doesIDExist(idNumber)
     local query = dbQuery(dbConnection, "SELECT idNumber FROM cash_ids WHERE idNumber = ?", idNumber)
@@ -53,13 +53,12 @@ addCommandHandler("id", function(player, command, length)
         local randomNumberString = wygenerujID(length, uid, login)
         if randomNumberString then
             outputDebugString("Wygenerowany ID: " .. randomNumberString, 3)
+            outputServerLog("ID: ".. randomNumberString.." ")
         end
     else
         outputDebugString("Wpisz poprawną ilość znaków.", 3)
     end
 end)
-
-
 
 
 addCommandHandler("wygenerujKod", function(player, command)
@@ -70,7 +69,7 @@ addCommandHandler("wygenerujKod", function(player, command)
     local randomNumberString = wygenerujID(length, uid, login)
     if randomNumberString then
         local formattedID = randomNumberString:sub(1, 3) .. " " .. randomNumberString:sub(4, 6)
-        outputDebugString("Wygenerowany ID: " .. randomNumberString, 3)
+        outputDebugString("Wygenerowany ID: " .. formattedID, 3)
         outputServerLog("ID: " .. formattedID)
     else
         outputDebugString("Wpisz poprawną ilość znaków.", 3)
